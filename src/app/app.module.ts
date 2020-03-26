@@ -23,6 +23,7 @@ import { PatientCreateComponent } from './components/patient-create/patient-crea
 // appointment
 import { AppointmentListComponent } from './components/appointment-list/appointment-list.component';
 import { AppointmentCreateComponent } from './components/appointment-create/appointment-create.component';
+import { PatientReportComponent } from './components/patient-report/patient-report.component';
 
 registerLocaleData(localePt);
 
@@ -36,7 +37,8 @@ registerLocaleData(localePt);
     PatientCreateComponent,
     PatientListComponent,
     AppointmentListComponent,
-    AppointmentCreateComponent
+    AppointmentCreateComponent,
+    PatientReportComponent
   ],
   imports: [
     BrowserModule,
