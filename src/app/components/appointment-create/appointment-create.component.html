@@ -13,14 +13,48 @@
           <div class="form-group">
               <label for="localDateTime">Date</label>
               
-              
               <input formControlName="localDateTime" 
-              id="localDateTime" type="datetime-local" value="2020-03-25T23:07:38.546Z"
+              id="localDateTime" type="datetime-local"
               class="form-control" [ngClass]="{ 'is-invalid': submitted && f.localDateTime.errors }">
               
               <div *ngIf="submitted && f.localDateTime.invalid" class="invalid-feedback">
                   <div *ngIf="f.localDateTime.errors.required">Date is required.</div>
               </div>
+          </div>
+
+          <div class="form-group">
+            <label for="type">Appointment Type</label>
+            <select class="form-control" formControlName="type">
+              <option selected>CONSULTATION</option>
+              <option>EXAMINATION</option>
+              <option>ROUTINE</option>
+              <option>MEDICAL_PROCEDURE</option>
+              <option>CHECKUP</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+              <label for="patientId">Patient ID</label>
+              <input formControlName="patientId" id="patientId" type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.patientId.errors }" maxlength="20">
+              <div *ngIf="submitted && f.patientId.invalid" class="invalid-feedback">
+                  <div *ngIf="f.patientId.errors.required">Patient ID is required.</div>
+                  <div *ngIf="f.patientId.errors.minlength">Minimum 5 characters</div>
+              </div>
+          </div>
+
+          <div class="form-group">
+              <label for="weight">Weight</label>
+              <input formControlName="weight" id="weight" type="number" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.weight.errors }" maxlength="20">
+          </div>
+
+          <div class="form-group">
+              <label for="waistCircumference">Waist Circumference</label>
+              <input formControlName="waistCircumference" id="waistCircumference" type="number" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.waistCircumference.errors }" maxlength="20">
+          </div>
+
+          <div class="form-group">
+              <label for="glicemia">Glicemia</label>
+              <input formControlName="glicemia" id="glicemia" type="number" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.glicemia.errors }" maxlength="20">
           </div>
 
           <button class="btn btn-primary" type="submit">Register</button>

@@ -17,7 +17,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let p of appointments">
-        <td> {{ p.localDateTime }}</td>
+        <td> {{ p.localDateTime | date:'short' }}</td>
         <td> {{ p.type }}</td>
         <td> {{ p.patientId }}</td>
         <td> {{ p.weight }}</td>

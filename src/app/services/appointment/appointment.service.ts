@@ -1,3 +1,4 @@
+import { PatientReport } from './../../models/patient-report/PatientReport.model';
 import { Appointment } from './../../models/appointment/appointment.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -17,5 +18,9 @@ export class AppointmentService {
 
   public createAppointment(appointment: Appointment) {
     return this.http.post<Appointment>(`${environment.apiURL}/appointment`, appointment);
+  }
+
+  public getReportByPatient(patientId: string) {
+    return this.http.get<PatientReport>(`${environment.apiURL}/appointment/report/${patientId}`);
   }
 }

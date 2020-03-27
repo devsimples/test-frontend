@@ -16,12 +16,12 @@ export class AppointmentCreateComponent implements OnInit {
   alertComponent: AlertComponent;
 
   formAppointment = new FormGroup({
-    localDateTime: new FormControl('2020-03-25T23:07:38.546Z', [Validators.required]),
+    localDateTime: new FormControl('', [Validators.required]),
     type: new FormControl('CONSULTATION', [Validators.required]),
-    patientId: new FormControl('marcos', [Validators.required]),
-    weight: new FormControl('0', [Validators.required]),
-    waistCircumference: new FormControl('0', [Validators.required]),
-    glicemia: new FormControl('0', [Validators.required])
+    patientId: new FormControl('', [Validators.required, Validators.minLength(5)]),
+    weight: new FormControl('', []),
+    waistCircumference: new FormControl('', []),
+    glicemia: new FormControl('', [])
   });
   submitted = false;
 
@@ -41,26 +41,26 @@ export class AppointmentCreateComponent implements OnInit {
       localDateTime: f.localDateTime.value,
       type: f.type.value,
       patientId: f.patientId.value,
-      weight: 0,
-      waistCircumference: 0,
-      glicemia: 0
+      weight: f.weight.value,
+      waistCircumference: f.waistCircumference.value,
+      glicemia: f.glicemia.value
     };
   }
 
   createAppointment() {
     this.submitted = true;
 
-    // if (this.formAppointment.valid) {
-    const appointment: Appointment = this.getAppointment();
+    if (this.formAppointment.valid) {
+      const appointment: Appointment = this.getAppointment();
 
-    this.appointmentService.createAppointment(appointment).subscribe(  () => {
-      this.alertComponent.success('Appointment Registered');
-      this.clear();
-    }, error => {
-      this.alertComponent.danger('Error to create appointment');
-      console.error(error);
-    } );
-    // }
+      this.appointmentService.createAppointment(appointment).subscribe(  () => {
+        this.alertComponent.success('Appointment Registered');
+        this.clear();
+      }, error => {
+        this.alertComponent.danger('Error to create appointment');
+        console.error(error);
+      } );
+    }
 
   }
 
