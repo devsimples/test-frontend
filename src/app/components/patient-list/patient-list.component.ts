@@ -1,9 +1,10 @@
 import { Patient } from './../../models/patient/patient.model';
 import { PatientService } from './../../services/patient/patient.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { AlertComponent } from '../alert/alert.component';
 
 @Component({
   selector: 'app-patient-list',
@@ -16,6 +17,9 @@ export class PatientListComponent implements OnInit {
   patients$: Observable<Patient[]>;
 
   filter = new FormControl('');
+
+  @ViewChild(AlertComponent)
+  alertComponent: AlertComponent;
 
   constructor(private service: PatientService) {}
 
@@ -36,17 +40,17 @@ export class PatientListComponent implements OnInit {
 
     }, error => {
       console.error(error);
+      this.alertComponent.danger('Error to load patients');
     } );
   }
 
   search(text: string): Patient[] {
     return this.patients.filter(p => {
       const term = text.toLowerCase();
-      console.log(term);
-      return p.firstName.toLowerCase().includes(term)
-          || p.middleName.toLowerCase().includes(term)
-          || p.lastName.toLowerCase().includes(term)
-          || p.email.toLowerCase().includes(term);
+
+      const includes = (s: string) => (s != null && s.toLowerCase().includes(term));
+
+      return includes(p.firstName) || includes(p.middleName) || includes(p.lastName) || includes(p.email);
     });
   }
 }

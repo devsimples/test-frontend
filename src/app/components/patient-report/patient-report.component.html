@@ -2,12 +2,18 @@
   
   <app-alert #alertComponent></app-alert>
 
-  <h1>Appointment Repository</h1>
+  <h1>Appointments per Patient Report</h1>
   <form>
         <div class="form-group">
             <label for="patientId">Patient ID</label>
-            <input id="patientId" type="text" class="form-control" #patientId>
-            <button class="btn btn-primary" type="button" (click)="generateReport(patientId.value)">Search</button>
+            <div class="row">
+              <div class="col">
+                <input id="patientId" type="text" class="form-control" #patientId placeholder="Example: marcos">
+              </div>
+              <div class="col">
+                <button class="btn btn-primary" type="button" (click)="generateReport(patientId.value)">Search</button>
+              </div>
+            </div>
         </div>
   </form>
 
