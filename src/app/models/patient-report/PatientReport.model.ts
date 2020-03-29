@@ -1,5 +1,12 @@
-import { PatientReportWeek } from './PatientReportWeek.mode';
 
 export class PatientReport {
-  weeks: PatientReportWeek[];
+  year: number;
+  week: number;
+  appointmentCount: number;
+  consultation: number;
+  examination: number;
+  checkup: number;
+  medicalProcedure: number;
+  routine: number;
+  average: number;
 }

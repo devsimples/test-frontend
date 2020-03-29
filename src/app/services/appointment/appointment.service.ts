@@ -21,6 +21,6 @@ export class AppointmentService {
   }
 
   public getReportByPatient(patientId: string) {
-    return this.http.get<PatientReport>(`${environment.apiURL}/appointment/report/${patientId}`);
+    return this.http.get<PatientReport[]>(`${environment.apiURL}/appointment/report/${patientId}`);
   }
 }

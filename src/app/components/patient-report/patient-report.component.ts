@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PatientReportComponent implements OnInit {
 
-  report: PatientReport;
+  report: PatientReport[];
 
   constructor(private appointmentService: AppointmentService) { }
 
@@ -20,7 +20,7 @@ export class PatientReportComponent implements OnInit {
   generateReport(patientId): void {
     console.log(patientId);
     this.appointmentService.getReportByPatient(patientId)
-      .subscribe(  (data: PatientReport) => {
+      .subscribe(  (data: PatientReport[]) => {
         this.report = data;
       });
   }
